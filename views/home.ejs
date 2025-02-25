@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+
+      .file-card:hover .file-name {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .file-name {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <% if (error) { %>
+    <div
+      class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+      role="alert"
+    >
+      <svg
+        class="flex-shrink-0 inline w-4 h-4 me-3"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+        />
+      </svg>
+      <span class="sr-only">Error</span>
+      <div><span class="font-medium">Error: </span><%= error %></div>
+    </div>
+    <% } %>
+    <main class="relative h-screen w-screen p-10">
+      <div class="flex items-center justify-between">
+        <header>
+          <h1 class="text-5xl font-bold">
+            Welcome, <span><%= username %></span>👋
+          </h1>
+        </header>
+        <div class="font-semibold rounded-md px-2 py-1 hover:bg-red-600 group">
+          <a href="/user/logout" class="text-red-600 group-hover:text-white">
+            Logout
+          </a>
+        </div>
+      </div>
+      <button
+        onclick="openPop()"
+        type="button"
+        class="fixed bottom-10 right-10 hover:bg-gray-700 rounded-full text-5xl dark:hover:bg-gray-700"
+      >
+        <i class="ri-add-circle-fill"></i>
+      </button>
+
+      <div
+        class="pop hidden backdrop-blur fixed top-0 left-0 w-full h-screen flex items-center justify-center"
+        onclick="closePop(event)"
+      >
+        <form
+          action="/upload"
+          method="post"
+          enctype="multipart/form-data"
+          class="bg-white dark:bg-gray-700 rounded-lg p-5"
+        >
+          <div class="flex items-center justify-center w-96">
+            <label
+              for="dropzone-file"
+              class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+            >
+              <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                <svg
+                  class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 16"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                  />
+                </svg>
+                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                  <span class="font-semibold">Click to upload</span> or drag and
+                  drop
+                </p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">
+                  SVG, PNG, JPG or GIF (MAX. 800x400px)
+                </p>
+              </div>
+              <input
+                id="dropzone-file"
+                type="file"
+                class="hidden"
+                name="file"
+              />
+            </label>
+          </div>
+          <button
+            type="submit"
+            class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mt-5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+          >
+            Confirm
+          </button>
+        </form>
+      </div>
+
+      <!-- Files Section -->
+      <div class="mt-16 w-full flex flex-wrap gap-12">
+        <% files.forEach((file) => { %>
+        <div class="w-40 file-card">
+          <div
+            class="w-full mt-2 h-40 flex items-center justify-center overflow-hidden cursor-pointer"
+            onclick="openFilePopup('<%= file.path %>')"
+          >
+            <img
+              src="<%= file.path %>"
+              class="object-contain max-h-full w-full"
+            />
+          </div>
+
+          <div class="flex justify-between items-center mt-2 p-2 file-name">
+            <div class="flex-1 overflow-hidden pr-2">
+              <h3
+                class="text-sm font-semibold truncate"
+                style="
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                "
+              >
+                <%= file.orignalname %>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+    </main>
+    <div
+      id="file-viewer-popup"
+      class="hidden fixed top-0 left-0 w-full h-full backdrop-blur flex items-center justify-center bg-black/50"
+      onclick="closeFilePopup(event)"
+    >
+      <img
+        id="popup-image"
+        class="max-w-full max-h-full object-contain"
+        src=""
+      />
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script>
+      function openPop() {
+        const popup = document.querySelector(".pop");
+        popup.classList.remove("hidden");
+      }
+
+      function closePop(event) {
+        const popup = document.querySelector(".pop");
+        if (event.target === popup) {
+          popup.classList.add("hidden");
+        }
+      }
+
+      function openFilePopup(filePath) {
+        const popup = document.getElementById("file-viewer-popup");
+        const image = document.getElementById("popup-image");
+        image.src = filePath; // Set the image source
+        popup.classList.remove("hidden");
+      }
+
+      function closeFilePopup(event) {
+        const popup = document.getElementById("file-viewer-popup");
+        if (event.target === popup) {
+          popup.classList.add("hidden");
+        }
+      }
+    </script>
+  </body>
+</html>
