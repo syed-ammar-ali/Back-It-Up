@@ -23,6 +23,10 @@ app.get("/", (req, res) => {
 app.use("/", indexRouter);
 app.use("/user", userRouter);
 
+<<<<<<< HEAD
 app.listen(process.env.PORT || 3000, () => {
+=======
+app.listen(3000, () => {
+>>>>>>> af4c2a35ef4b1144258ad93b61b35213ef333136
   console.log("chal gya bhai");
 });
