@@ -13,6 +13,7 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com)
 [![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white)](https://cloudinary.com)
 [![EJS](https://img.shields.io/badge/EJS-B4CA65?style=for-the-badge&logo=ejs&logoColor=black)](https://ejs.co)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Back%20It%20Up-4A90E2?style=for-the-badge&logo=render&logoColor=white)](https://your-app-name.onrender.com)
 
 <br/>
 
@@ -25,6 +26,14 @@
 ---
 
 ## 🧠 What Is This?
+
+## 🚀 Live Demo
+
+> **[https://back-it-up.onrender.com](https://back-it-up.onrender.com)**
+>
+> ⚠️ Hosted on Render's free tier — may take 30–50 seconds to wake up on first load.
+
+---
 
 **Back It Up** is a full-stack cloud storage web app where users can securely upload files and browse them through a clean, visual masonry grid layout — think of it as your personal cloud drive, but actually good-looking.
 
